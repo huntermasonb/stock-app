@@ -1,0 +1,20 @@
+/* HEADER */
+.App-header {
+  background-color: #3c1f72;
+  min-height: 150px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+/* BODY */
+.App-body h1 {
+  text-align: center;
+  font-size: calc(10px + 2vmin);
+}
+.App-body .stock-prices ::placeholder  {
+  color: rgb(250 245 255 / var(--tw-text-opacity));
+}
