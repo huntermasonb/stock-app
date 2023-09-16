@@ -4,18 +4,15 @@ import axios from 'axios';
 const StockPrice = () => {
   const [symbols, setSymbols] = useState('');
   const [prices, setPrices] = useState({});
-
   const handleInputChange = (event) => {
     setSymbols(event.target.value);
     document.getElementById('stockPrices').style.display="none";
   };
-
   const handleSubmit = (event) => {
     event.preventDefault(); 
     fetchData();
     document.getElementById('stockPrices').style.display="block";
   };
-
   const fetchData = async () => {
     if (symbols) {
       const options = {
@@ -31,7 +28,6 @@ const StockPrice = () => {
           'X-RapidAPI-Host': 'twelve-data1.p.rapidapi.com'
         }
       };
-
       try {
         const response = await axios.request(options);
         if (response.status == "error"){
@@ -47,7 +43,7 @@ const StockPrice = () => {
       alert("Please make sure to enter valid stock symbols.")
     }
   };
-
+  
   // VIEW/DISPLAY
   return (
     <div className='container m-auto w-full'>     
