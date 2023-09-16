@@ -7,11 +7,13 @@ const StockPrice = () => {
 
   const handleInputChange = (event) => {
     setSymbols(event.target.value);
+    document.getElementById('stockPrices').style.display="none";
   };
 
   const handleSubmit = (event) => {
-    event.preventDefault(); // Prevent default form submission behavior
+    event.preventDefault(); 
     fetchData();
+    document.getElementById('stockPrices').style.display="block";
   };
 
   const fetchData = async () => {
@@ -22,7 +24,7 @@ const StockPrice = () => {
         params: {
           symbol: symbols,
           format: 'json',
-          outputsize: '30'
+          outputsize: '10'
         },
         headers: {
           'X-RapidAPI-Key': '577a69f858msh40fe029fdfb0c7bp1d982cjsna5b05d487d92',
@@ -32,38 +34,49 @@ const StockPrice = () => {
 
       try {
         const response = await axios.request(options);
+        if (response.status == "error"){
+          alert("Error: Please make sure you entered valid stock symbols.")
+          return;
+        }
         setPrices(response.data);
-      } catch (error) {
+      } 
+      catch (error) {
         console.error(error);
       }
+    } else {
+      alert("Please make sure to enter valid stock symbols.")
     }
   };
 
+  // VIEW/DISPLAY
   return (
-    <div>
-      <h1 className='drop-shadow-md'>Stock Prices</h1>
-      <div className='flex flex-row justify-center'>
-        <form onSubmit={handleSubmit} className='flex-col stock-prices'>
+    <div className='container m-auto w-full'>     
+      <div className='flex flex-row my-2'>
+        <form onSubmit={handleSubmit} className='stockInput w-full text-center'>
           <input
             type="text"
             id='stockSymbols'
             value={symbols}
-            className='text-center text-purple-50 bg-purple-600 hover:bg-purple-500 rounded shadow-sm shadow-black'
+            className='text-center shadow-sm w-1/3 shadow-black hover:shadow-md hover:shadow-black'
             onChange={handleInputChange}
-            placeholder="Enter Symbols"
+            placeholder="Enter Symbols ex. AMZN, AAPL"
+            required
           />
-          <button type="submit" className='rounded shadow-md p-2 mt-2'>
-            Fetch Prices
+          <button type="submit" className='rounded shadow-md px-2 mx-1 font-semibold text-purple-50 placeholder-purple-50 bg-cyan-600 hover:bg-cyan-700'>
+            Search
           </button>
         </form>
       </div>
-      <ul className='text-center'>
-        {Object.keys(prices).map(symbol => (
-          <li key={symbols}>
-            {symbols}: {prices[symbol]}
-          </li>
-        ))}
-      </ul>
+      <div id='stockPrices' className='flex flex-col'>
+        <h1>Stock Prices</h1>
+        <ul className='text-center'>
+          {Object.keys(prices).map(symbol => (
+            <li key={symbols}>
+              {symbols}: {prices[symbol]}
+            </li>
+          ))}
+        </ul>
+      </div>
     </div>
   );
 };

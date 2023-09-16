@@ -19,7 +19,7 @@ function App() {
         >
           Learn React
         </a>  */}
-        <h1> Welcome to my Stock App</h1>
+        <h1>Stock App</h1>
       </header>
       <div className='App-body'>
           <StockPrice />
