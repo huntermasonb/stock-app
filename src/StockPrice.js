@@ -3,7 +3,7 @@ import axios from 'axios';
 
 const StockPrice = () => {
   const [symbols, setSymbols] = useState('');
-  const [prices, setPrices] = useState({});
+  const [prices, setPrices] = useState([]);
   const handleInputChange = (event) => {
     setSymbols(event.target.value);
     document.getElementById('stockPrices').style.display="none";
@@ -30,7 +30,8 @@ const StockPrice = () => {
       };
       try {
         const response = await axios.request(options);
-        if (response.status == "error"){
+        console.log(response);
+        if (response.status !== 200){
           alert("Error: Please make sure you entered valid stock symbols.")
           return;
         }
@@ -67,8 +68,8 @@ const StockPrice = () => {
         <h1>Stock Prices</h1>
         <ul className='text-center'>
           {Object.keys(prices).map(symbol => (
-            <li key={symbols}>
-              {symbols}: {prices[symbol]}
+            <li key={symbols.split(',')}>
+              {symbols}: {prices[symbol].price ? prices[symbol].price : prices[symbol]}
             </li>
           ))}
         </ul>
