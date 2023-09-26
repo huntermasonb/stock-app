@@ -64,12 +64,14 @@ const StockPrice = () => {
           </button>
         </form>
       </div>
+      {/* Stock Symbol and Prices Display */}
       <div id='stockPrices' className='flex flex-col'>
         <h1>Stock Prices</h1>
         <ul className='text-center'>
           {Object.keys(prices).map(symbol => (
-            <li key={symbols.split(',')}>
-              {symbols}: {prices[symbol].price ? prices[symbol].price : prices[symbol]}
+            <li key={symbols}>
+            {/* Handler for if there was more than one symbol based on the way the API returns data */}
+              {symbol}: {prices[symbol].price ? prices[symbol].price : prices[symbol]}
             </li>
           ))}
         </ul>
