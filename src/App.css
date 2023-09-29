@@ -6,14 +6,15 @@
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  font-size: calc(16px + 2vmin);
+  font-size: calc(16px + 5vmin);
   color: white;
+  padding-bottom: 8px;
 }
 
 /* BODY */
 .App-body h1 {
   text-align: center;
-  font-size: calc(8px + 2vmin);
+  font-size: calc(8px + 3vmin);
   text-shadow: .2px -1px black;
 }
 #stockPrices {
