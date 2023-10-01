@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 
 import StockData from './StockData';
@@ -9,12 +9,12 @@ const StockPrice = () => {
   const handleInputChange = (event) => {
     setPrices({});
     setSymbols(event.target.value);
-    document.getElementById('stockPrices').style.display="none";
+    document.getElementById('stockPricesView').style.display="none";
   };
   const handleSubmit = (event) => {
     event.preventDefault(); 
     fetchData();
-    document.getElementById('stockPrices').style.display="block";
+    document.getElementById('stockPricesView').style.display="flex";
   };
   
   // API Request and parameters
@@ -58,28 +58,30 @@ const StockPrice = () => {
   
   // VIEW/DISPLAY
   return (
-    <div className='container m-auto pt-4'>     
-      <div className='flex flex-row my-2'>
-        <form onSubmit={handleSubmit} className='stockInput flex-grow text-center px-2'>
-          <input
-            type="text"
-            id='stockSymbols'
-            value={symbols}
-            className='text-center shadow-sm w-2/3 shadow-black hover:shadow-md hover:shadow-black'
-            onChange={handleInputChange}
-            placeholder="Enter Symbols ex. AMZN, AAPL"
-            required
-          />
-          <button type="submit" 
-            className='w-1/3 max-w-[250px] font-semibold rounded shadow-sm shadow-black hover:shadow-md hover:shadow-black text-purple-50 placeholder-purple-50 bg-[#0d5382] hover:bg-[#0d538296]'
-          >
-            Search
-          </button>
-        </form>
-      </div>
-      {/* Stock Symbol and Prices Display via StockData.js */}
-      <div id='stockPrices' className='flex text-center'>
-        <StockData symbol={symbols} prices={prices} />
+    <div className='m-auto pt-4 w-full'>
+      <div className='flex flex-col w-full'>     
+        <div className='flex flex-row my-2'>
+          <form onSubmit={handleSubmit} className='stockInput flex-grow text-center px-2'>
+            <input
+              type="text"
+              id='stockSymbols'
+              value={symbols}
+              className='text-center shadow-sm w-2/3 shadow-black hover:shadow-md hover:shadow-black'
+              onChange={handleInputChange}
+              placeholder="Enter Symbols ex. AMZN, AAPL"
+              required
+            />
+            <button type="submit" 
+              className='w-1/3 max-w-[250px] font-semibold rounded shadow-sm shadow-black hover:shadow-md hover:shadow-black bg-[#B6BC89] hover:bg-[#9EA372]'
+            >
+              Search
+            </button>
+          </form>
+        </div>
+        {/* Stock Symbol and Prices Display via StockData.js */}
+        <div id='stockPricesView' className='flex flex-col text-center'>
+          <StockData symbol={symbols} prices={prices} />
+        </div>
       </div>      
     </div> 
     

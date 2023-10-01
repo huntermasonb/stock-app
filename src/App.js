@@ -1,5 +1,5 @@
 import './App.css';
-import StockPrice from './StockPrice';
+import StockPrice from './Components/StockPrice';
 
 function App() {
   return (

@@ -1,6 +1,6 @@
 /* HEADER */
 .App-header {
-  background-color: #3c1f72;
+  background-color: #9B9BCC;
   min-height: 50px;
   display: flex;
   flex-direction: row;
@@ -15,8 +15,8 @@
 .App-body h1 {
   text-align: center;
   font-size: calc(8px + 3vmin);
-  text-shadow: .2px -1px black;
+  text-shadow: 1px -1px black;
 }
-#stockPrices {
+#stockPricesView {
   display:none;
 }
