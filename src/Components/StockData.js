@@ -15,7 +15,7 @@ const StockData = ({ symbol, prices }) => {
       
             'CARD' FOR DISPLAYING ALL OF THE STOCK INFORMATION -- MOBILE VIEW
         */}
-        <h1>Stock Prices</h1>
+        <h1 className="max-sm:font-semibold">Stock Prices</h1>
         <div className="lg:flex lg:flex-col lg:justify-center">
             {/* Give the row it's number/index from the list */}
             {rows.map((row, rowIndex) => (
@@ -31,10 +31,10 @@ const StockData = ({ symbol, prices }) => {
                     {/* Symbol Column */}
                     <div className="flex flex-row text-center my-2">
                         <div className="inline-flex flex-col w-1/2 my-2">
-                            <div className=" font-medium">Symbol</div>
+                            <div className="max-md:font-medium">Symbol</div>
                         </div>
                         <div className="flex-col w-1/2 inline-flex my-2">
-                            <div className="uppercase font-bold">
+                            <div className="uppercase max-md:font-medium">
                                 {/* If symbols = price, then there was only one symbol input by user */}
                                 {symbols === "price" ? symbol : symbols}
                             </div>
@@ -43,10 +43,10 @@ const StockData = ({ symbol, prices }) => {
                     {/* Price Column */}
                     <div className="flex flex-row text-center my-2">
                         <div className="flex-col w-1/2 inline-flex my-2">
-                            <div className="font-medium">Price</div>
+                            <div className="max-md:font-medium">Price</div>
                         </div>
                         <div className="inline-flex flex-col w-1/2 my-2">
-                            <div className="font-bold">
+                            <div className="max-md:font-medium">
                                 {/* If price doesn't exist, then there was only one symbol input by the user, changes the way data must be referenced */}
                                 {prices[symbols].price ? prices[symbols].price : prices[symbols]}
                             </div>
