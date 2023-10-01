@@ -5,10 +5,23 @@ import StockData from './StockData';
 
 const StockPrice = () => {
   const [symbols, setSymbols] = useState('');
+  const [sortedSymbols, setSortedSymbols] = useState('');
   const [prices, setPrices] = useState([]);
+
   const handleInputChange = (event) => {
+    const inputSymbols = event.target.value;
     setPrices({});
-    setSymbols(event.target.value);
+    setSymbols(inputSymbols);
+    
+    // Sorting the symbols as the user inputs them since I couldn't figure out how to sort after the data was returned.
+    const sortedSymbols = inputSymbols
+    .split(',')
+    .map((symbol) => symbol.trim())
+    .filter((symbol) => symbol.length > 0)
+    .sort()
+    .join(',');
+
+    setSortedSymbols(sortedSymbols);
     document.getElementById('stockPricesView').style.display="none";
   };
   const handleSubmit = (event) => {
@@ -24,9 +37,9 @@ const StockPrice = () => {
         method: 'GET',
         url: 'https://twelve-data1.p.rapidapi.com/price',
         params: {
-          symbol: symbols,
+          symbol: sortedSymbols,
           format: 'json',
-          outputsize: '10'
+          outputsize: '9'
         },
         headers: {
           'X-RapidAPI-Key': '577a69f858msh40fe029fdfb0c7bp1d982cjsna5b05d487d92',
@@ -36,7 +49,6 @@ const StockPrice = () => {
       try {
         const response = await axios.request(options);
         console.log(response);
-
         // Error Handling
         if (response.status !== 200){
           alert("Error: Please make sure you entered valid stock symbols.")
@@ -80,11 +92,10 @@ const StockPrice = () => {
         </div>
         {/* Stock Symbol and Prices Display via StockData.js */}
         <div id='stockPricesView' className='flex flex-col text-center'>
-          <StockData symbol={symbols} prices={prices} />
+          <StockData symbol={sortedSymbols} prices={prices} />
         </div>
       </div>      
     </div> 
-    
   );
 };
 export default StockPrice;
