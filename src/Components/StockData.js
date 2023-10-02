@@ -13,9 +13,9 @@ const StockData = ({ symbol, prices }) => {
         {/* 
             Parent Div on StockPrice exists already and class id is 'stockPrices, reason for using an empty JSX parent element'.
       
-            'CARD' FOR DISPLAYING ALL OF THE STOCK INFORMATION -- MOBILE VIEW
+            'CARD' FOR DISPLAYING ALL OF THE STOCK INFORMATION
         */}
-        <h1 className="max-sm:font-semibold">Stock Prices</h1>
+        <h1 className="max-sm:font-semibold md:font-medium">Stock Prices</h1>
         <div className="lg:flex lg:flex-col lg:justify-center">
             {/* Give the row it's number/index from the list */}
             {rows.map((row, rowIndex) => (
@@ -25,8 +25,8 @@ const StockData = ({ symbol, prices }) => {
                 <div
                     key={symbols}
                     className={`${
-                    rowIndex % 2 === 0 ? "even:bg-[#B6BC89] odd:bg-[#9B9BCC]" : "odd:bg-[#B6BC89] even:bg-[#9B9BCC]"
-                    } shadow-sm shadow-black mx-2 mb-4 rounded-lg lg:w-1/3`}
+                    rowIndex % 2 === 0 ? "even:bg-indigo-200 odd:bg-indigo-300" : "odd:bg-indigo-200 even:bg-indigo-300"
+                    } hover:shadow-md hover:shadow-black shadow-sm shadow-black mx-2 mb-4 rounded-lg lg:w-1/3`}
                 >   
                     {/* Symbol Column */}
                     <div className="flex flex-row text-center my-2">

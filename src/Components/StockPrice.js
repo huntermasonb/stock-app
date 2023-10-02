@@ -78,13 +78,13 @@ const StockPrice = () => {
               type="text"
               id='stockSymbols'
               value={symbols}
-              className='text-center shadow-sm w-2/3 shadow-black hover:shadow-md hover:shadow-black'
+              className='text-center shadow-sm w-2/3 shadow-black'
               onChange={handleInputChange}
               placeholder="Enter Symbols ex. AMZN, AAPL"
               required
             />
             <button type="submit" 
-              className='w-1/3 max-w-[250px] font-semibold rounded shadow-sm shadow-black hover:shadow-md hover:shadow-black bg-[#B6BC89] hover:bg-[#9EA372]'
+              className='w-1/3 max-w-[250px] font-semibold rounded shadow-sm shadow-black hover:shadow-md hover:shadow-black bg-indigo-300 hover:bg-indigo-400'
             >
               Search
             </button>
