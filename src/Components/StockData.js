@@ -15,46 +15,43 @@ const StockData = ({ symbol, prices }) => {
       
             'CARD' FOR DISPLAYING ALL OF THE STOCK INFORMATION
         */}
-        <h1 className="max-sm:font-semibold md:font-medium">Stock Prices</h1>
+        <h1 className="mt-6 text-center max-sm:font-semibold font-medium">
+            {symbol.length ? 'Stock Prices' : 'Enter Symbols to Show Stock Prices'}
+        </h1>
+
         <div className="lg:flex lg:flex-col lg:justify-center">
             {/* Give the row it's number/index from the list */}
             {rows.map((row, rowIndex) => (
-            <div key={`row-${rowIndex}`} className="lg:flex lg:flex-row lg:justify-center">
+            <div key={`row-${rowIndex}`} className="grid grid-cols-1 gap-8 mt-8 sm:grid-cols-3">
                 {row.map((symbols) => (
                 //Card background 
                 <div
                     key={symbols}
                     className={`${
-                    rowIndex % 2 === 0 ? "even:bg-indigo-200 odd:bg-indigo-300" : "odd:bg-indigo-200 even:bg-indigo-300"
-                    } hover:shadow-md hover:shadow-black shadow-sm shadow-black mx-2 mb-4 rounded-lg lg:w-1/3`}
+                        rowIndex % 2 === 0 ? "bg-indigo-200" : "bg-indigo-300"
+                        } p-4 shadow space-y-2 duration-150 transition-all hover:shadow-lg`}
                 >   
                     {/* Symbol Column */}
-                    <div className="flex flex-row text-center my-2">
-                        <div className="inline-flex flex-col w-1/2 my-2">
-                            <div className="max-md:font-medium">Symbol</div>
-                        </div>
-                        <div className="flex-col w-1/2 inline-flex my-2">
-                            <div className="uppercase max-md:font-medium">
-                                {/* If symbols = price, then there was only one symbol input by user */}
-                                {symbols === "price" ? symbol : symbols}
-                            </div>
+                    <div className="flex items-center justify-between">
+                        <div className="font-semibold">Symbol</div>
+
+                        <div className="uppercase ">
+                            {/* If symbols = price, then there was only one symbol input by user */}
+                            {symbols === "price" ? symbol : symbols}
                         </div>
                     </div>
+
                     {/* Price Column */}
-                    <div className="flex flex-row text-center my-2">
-                        <div className="flex-col w-1/2 inline-flex my-2">
-                            <div className="max-md:font-medium">Price</div>
-                        </div>
-                        <div className="inline-flex flex-col w-1/2 my-2">
-                            <div className="max-md:font-medium">
-                                {/* If price doesn't exist, then there was only one symbol input by the user, changes the way data must be referenced */}
-                                {prices[symbols].price ? prices[symbols].price : prices[symbols]}
-                            </div>
+                    <div className="flex items-center justify-between pb-4">
+                        <div className="font-semibold">Price</div>
+
+                        <div>
+                            {/* If price doesn't exist, then there was only one symbol input by the user, changes the way data must be referenced */}
+                            {prices[symbols].price ? prices[symbols].price : prices[symbols]}
                         </div>
                     </div>
-                    <div className="flex flex-row">
-                        <div className="flex flex-col w-full pb-6">Future content will go here</div>
-                    </div>
+
+                    <div>Future content will go here</div>
                 </div>
                 ))}
             </div>

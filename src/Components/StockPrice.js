@@ -15,9 +15,9 @@ const StockPrice = () => {
     
     // Sorting the symbols as the user inputs them since I couldn't figure out how to sort after the data was returned.
     const sortedSymbols = inputSymbols
-    .split(',')
+    .split(',/ ')
     .map((symbol) => symbol.trim())
-    .filter((symbol) => symbol.length > 0)
+    .filter((symbol) => symbol.length > 1)
     .sort()
     .join(',');
 
@@ -39,7 +39,7 @@ const StockPrice = () => {
         params: {
           symbol: sortedSymbols,
           format: 'json',
-          outputsize: '9'
+          outputsize: '8'
         },
         headers: {
           'X-RapidAPI-Key': '577a69f858msh40fe029fdfb0c7bp1d982cjsna5b05d487d92',
@@ -70,28 +70,28 @@ const StockPrice = () => {
   
   // VIEW/DISPLAY
   return (
-    <div className='m-auto pt-4 w-full'>
+    <div className="p-16 w-full">
       <div className='flex flex-col w-full'>     
-        <div className='flex flex-row my-2'>
-          <form onSubmit={handleSubmit} className='stockInput flex-grow text-center px-2'>
+        <div className='flex flex-row'>
+          <form onSubmit={handleSubmit} className="flex gap-4 text-center w-full">
             <input
               type="text"
-              id='stockSymbols'
+              id="stockSymbols"
               value={symbols}
-              className='text-center shadow-sm w-2/3 shadow-black'
+              className="border border-slate-300 px-3 py-2 rounded-lg w-full focus:ring-2 focus:ring-indigo-400 focus:border-indigo-400 focus:outline-none"
               onChange={handleInputChange}
-              placeholder="Enter Symbols ex. AMZN, AAPL"
+              placeholder="AMZN, AAPL..."
               required
             />
             <button type="submit" 
-              className='w-1/3 max-w-[250px] font-semibold rounded shadow-sm shadow-black hover:shadow-md hover:shadow-black bg-indigo-300 hover:bg-indigo-400'
+              className="w-1/3 max-w-[250px] font-semibold rounded shadow-sm transition-colors duration-150 ease-in-out bg-indigo-500 text-indigo-100 hover:bg-indigo-600"
             >
               Search
             </button>
           </form>
         </div>
         {/* Stock Symbol and Prices Display via StockData.js */}
-        <div id='stockPricesView' className='flex flex-col text-center'>
+        <div id='stockPricesView' className='flex flex-col text-center '>
           <StockData symbol={sortedSymbols} prices={prices} />
         </div>
       </div>      
