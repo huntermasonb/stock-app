@@ -21,7 +21,7 @@ const StockPrice = () => {
     .sort()
     .join(',');
 
-    setSortedSymbols(sortedSymbols);
+    setSortedSymbols(sortedSymbols.trim());
     document.getElementById('stockPricesView').style.display="none";
   };
   const handleSubmit = (event) => {
@@ -53,7 +53,8 @@ const StockPrice = () => {
         if (response.status !== 200){
           alert("Error: Please make sure you entered valid stock symbols.")
           return;
-        } else if (response.status === 429 ){
+        }
+        if (response.status === 429 ){
           alert("Error: We have run out of API tokens temporarily, please try again later.")
           return;
         }
@@ -68,11 +69,10 @@ const StockPrice = () => {
     }
   };
   
-  // VIEW/DISPLAY
+  // Search Bar
   return (
     <div className="p-16 w-full">
-      <div className='flex flex-col w-full'>     
-        <div className='flex flex-row'>
+      <div className='flex flex-col w-full'>
           <form onSubmit={handleSubmit} className="flex gap-4 text-center w-full">
             <input
               type="text"
@@ -84,12 +84,11 @@ const StockPrice = () => {
               required
             />
             <button type="submit" 
-              className="w-1/3 max-w-[250px] font-semibold rounded shadow-sm transition-colors duration-150 ease-in-out bg-indigo-500 text-indigo-100 hover:bg-indigo-600"
+              className="w-1/3 max-w-[250px] px-1 font-semibold rounded shadow-sm transition-colors duration-150 ease-in-out bg-indigo-500 text-indigo-100 hover:bg-indigo-600"
             >
               Search
             </button>
           </form>
-        </div>
         {/* Stock Symbol and Prices Display via StockData.js */}
         <div id='stockPricesView' className='flex flex-col text-center '>
           <StockData symbol={sortedSymbols} prices={prices} />
