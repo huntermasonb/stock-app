@@ -52,14 +52,14 @@ const StockPrice = () => {
         // Error Handling
         if (response.status !== 200){
           alert("Error: Please make sure you entered valid stock symbols.")
-          return;
         }
         if (response.status === 429 ){
           alert("Error: We have run out of API tokens temporarily, please try again later.")
-          return;
         }
         // End Error Handling
-        setPrices(response.data);
+        else {
+          setPrices(response.data);
+        }      
       } 
       catch (error) {
         console.error(error);

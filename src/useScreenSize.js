@@ -1,5 +1,4 @@
-// This files isn't used. I created it, but decided it would be better to just use CSS media querys. Not sure if it could be useful in the future.
-
+// This file isn't used. I created it, but decided it would be better to just use CSS media querys. Not sure if it could be useful in the future.
 
 import { useState, useEffect } from "react";
 

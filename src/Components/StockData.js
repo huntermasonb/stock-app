@@ -1,6 +1,8 @@
 import React from "react";
+import DetailedStockData from "./DetailedStockData";
 
 const StockData = ({ symbol, prices }) => {
+    const sortedSymbols = symbol;
     const itemsPerRow = 3;
 
     // Create an array of arrays, each containing 'itemsPerRow' items and calculate the amount of rows needed
@@ -47,7 +49,10 @@ const StockData = ({ symbol, prices }) => {
                         </div>
                     </div>
 
-                    <div>Price-to-Earning Ratio, Beta, & Dividend yields in the future</div>
+                    <div>
+                        Price-to-Earning Ratio, Beta, & Dividend yields in the future
+                        {/* <DetailedStockData symbol={sortedSymbols} /> */}
+                    </div>
                 </div>
                 ))}
             </div>
