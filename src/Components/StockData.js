@@ -51,7 +51,7 @@ const StockData = ({ symbol, prices }) => {
 
                     <div>
                         Price-to-Earning Ratio, Beta, & Dividend yields in the future
-                        {/* <DetailedStockData symbol={sortedSymbols} /> */}
+                        {/* <DetailedStockData symbol={symbols} /> */}
                     </div>
                 </div>
                 ))}

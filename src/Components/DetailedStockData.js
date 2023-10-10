@@ -34,6 +34,8 @@ const DetailedStockData = async ({ symbol }) => {
                     return;
                 }
             };
+
+            fetchData();
         };
     }, [sortedSymbols]);
     return (
