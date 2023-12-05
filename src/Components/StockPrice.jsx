@@ -9,8 +9,15 @@ const StockPrice = () => {
   const [prices, setPrices] = useState([]);
 
   const handleInputChange = (event) => {
-    const inputSymbols = event.target.value;
     setPrices({});
+    
+    
+    document.getElementById('stockPricesView').style.display="none";
+  };
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    
+    const inputSymbols = event.target.value;
     setSymbols(inputSymbols);
     
     // Sorting the symbols as the user inputs them since I couldn't figure out how to sort after the data was returned.
@@ -22,10 +29,8 @@ const StockPrice = () => {
     .join(',');
 
     setSortedSymbols(sortedSymbols.trim());
-    document.getElementById('stockPricesView').style.display="none";
-  };
-  const handleSubmit = (event) => {
-    event.preventDefault(); 
+    console.log(sortedSymbols);
+
     fetchData();
     document.getElementById('stockPricesView').style.display="flex";
   };
