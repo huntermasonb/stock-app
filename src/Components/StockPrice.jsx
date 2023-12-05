@@ -15,9 +15,9 @@ const StockPrice = () => {
     
     // Sorting the symbols as the user inputs them since I couldn't figure out how to sort after the data was returned.
     const sortedSymbols = inputSymbols
-    .split(',/ ')
-    .map((symbol) => symbol.trim())
+    .split(/[,\s]+/)
     .filter((symbol) => symbol.length > 1)
+    .map((symbol) => symbol.trim())
     .sort()
     .join(',');
 
@@ -49,12 +49,14 @@ const StockPrice = () => {
       try {
         const response = await axios.request(options);
         console.log(response);
+        
         // Error Handling
         if (response.status !== 200){
           alert("Error: Please make sure you entered valid stock symbols.")
-        }
-        if (response.status === 429 ){
+        } else if (response.status === 429 ){
           alert("Error: We have run out of API tokens temporarily, please try again later.")
+        } else if (response.status === 400){
+          alert("Error: There weren't any symbols submitted, please try")
         }
         // End Error Handling
         else {

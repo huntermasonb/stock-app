@@ -1,21 +1,23 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
-const DetailedStockData = async ({ symbol }) => {
-    const sortedSymbols = symbol;
-    const [details, setDetails] = useState([])
-    console.log(sortedSymbols);
-    
+const DetailedStockData = React.memo(({ symbol }) => {
+    const [details, setDetails] = useState({});
+
+    // if (symbol.length >= 2){
+    //     sortedSymbols = sortedSymbols.split(/[,\s]+/);
+    //     console.log(sortedSymbols[0]); 
+    // }  
     useEffect(() => {
-        if (sortedSymbols) {
-            setDetails([])
+        if (symbol) {
+            setDetails({})
             const fetchData = async () => {
                 const options = {
                 method: 'GET',
                 url: 'https://alpha-vantage.p.rapidapi.com/query',
                 params: {
                     function: 'OVERVIEW',
-                    symbol: sortedSymbols,
+                    symbol: symbol,
                     datatype: 'json',
                     output_size: 'compact'
                 },
@@ -37,11 +39,16 @@ const DetailedStockData = async ({ symbol }) => {
 
             fetchData();
         };
-    }, [sortedSymbols]);
+    }, [symbol]);
     return (
-        <div>
+        <div className=" ">
             <p>{details.EPS}</p>
+            <p>{details.Beta}</p>
+            <p>{details.PERatio}</p>
+            <p>{details.DividendYield}</p>
+            <p>{details.DividendDate}</p>
+            <p>{details.DividendPerShare}</p>
         </div>
     );
-};
+});
 export default DetailedStockData;
