@@ -41,22 +41,22 @@ const StockData = ({ symbol, prices }) => {
                 {row.map((symbols) => (             
                 <div
                     key={symbols}
+                    id={symbols === "price" ? symbol : symbols}
                     className={`${
                         rowIndex % 2 === 0 ? "bg-indigo-200" : "bg-indigo-300"
-                        } p-4 shadow space-y-2 duration-200 transition-all rounded-sm hover:shadow-lg`}
-                    id={symbols === "price" ? symbol : symbols}
+                        } p-4 shadow space-y-2 duration-200 transition-all rounded-sm hover:shadow-lg`}       
                 >   
                     {/* Symbol Column */}
                     <div className="flex items-center justify-between" id="symbol">
                         <div className="font-semibold">Symbol</div>
                         <div className="uppercase ">
-                        {/* 
-                            If price doesn't exist, then there was only one symbol input by the user, changes the way data must be referenced.
-                            Checking length of symbols here doesn't help since the data structure is different when there is one vs multiple symbols submitted to the API.
-
-                            I use this way too much throughout this code and need to figure out a way to correct this somehow or create a function I can call.
-                        */}
                             {symbols === "price" ? symbol : symbols}
+                            {/* 
+                                If price doesn't exist, then there was only one symbol input by the user, changes the way data must be referenced.
+                                Checking length of symbols here doesn't help since the data structure is different when there is one vs multiple symbols submitted to the API.
+
+                                I use this way too much throughout this code and need to figure out a way to correct this somehow or create a function I can call.
+                            */}
                         </div>
                     </div>
 

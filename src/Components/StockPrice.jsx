@@ -10,10 +10,9 @@ const StockPrice = () => {
 
   const handleInputChange = (event) => {
     setPrices({});
-    
-    
     document.getElementById('stockPricesView').style.display="none";
   };
+  
   const handleSubmit = (event) => {
     event.preventDefault();
     

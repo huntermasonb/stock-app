@@ -4,27 +4,23 @@ import axios from "axios";
 const DetailedStockData = React.memo(({ symbol }) => {
     const [details, setDetails] = useState({});
 
-    // if (symbol.length >= 2){
-    //     sortedSymbols = sortedSymbols.split(/[,\s]+/);
-    //     console.log(sortedSymbols[0]); 
-    // }  
     useEffect(() => {
         if (symbol) {
             setDetails({})
             const fetchData = async () => {
                 const options = {
-                method: 'GET',
-                url: 'https://alpha-vantage.p.rapidapi.com/query',
-                params: {
-                    function: 'OVERVIEW',
-                    symbol: symbol,
-                    datatype: 'json',
-                    output_size: 'compact'
-                },
-                headers: {
-                    'X-RapidAPI-Key': '577a69f858msh40fe029fdfb0c7bp1d982cjsna5b05d487d92',
-                    'X-RapidAPI-Host': 'alpha-vantage.p.rapidapi.com'
-                }
+                    method: 'GET',
+                    url: 'https://alpha-vantage.p.rapidapi.com/query',
+                    params: {
+                        function: 'OVERVIEW',
+                        symbol: symbol,
+                        datatype: 'json',
+                        output_size: 'compact'
+                    },
+                    headers: {
+                        'X-RapidAPI-Key': '577a69f858msh40fe029fdfb0c7bp1d982cjsna5b05d487d92',
+                        'X-RapidAPI-Host': 'alpha-vantage.p.rapidapi.com'
+                    }
                 };
                 
                 try {
