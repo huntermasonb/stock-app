@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
-const DetailedStockData = React.memo(({ symbol }) => {
+const DetailedStockData = React.memo(function DetailedStockData({ symbol }) {
     const [details, setDetails] = useState({});
 
     useEffect(() => {
@@ -34,7 +34,7 @@ const DetailedStockData = React.memo(({ symbol }) => {
             };
 
             fetchData();
-        };
+        }
     }, [symbol]);
     return (
         <div className=" ">
