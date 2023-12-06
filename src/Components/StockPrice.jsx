@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import axios from 'axios';
 
 import StockData from './StockData';
@@ -9,16 +9,9 @@ const StockPrice = () => {
   const [prices, setPrices] = useState([]);
 
   const handleInputChange = (event) => {
-    setPrices({});
-    document.getElementById('stockPricesView').style.display="none";
-  };
-  
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    
     const inputSymbols = event.target.value;
     setSymbols(inputSymbols);
-    
+
     // Sorting the symbols as the user inputs them since I couldn't figure out how to sort after the data was returned.
     const sortedSymbols = inputSymbols
     .split(/[,\s]+/)
@@ -28,6 +21,12 @@ const StockPrice = () => {
     .join(',');
 
     setSortedSymbols(sortedSymbols.trim());
+    setPrices({});
+    document.getElementById('stockPricesView').style.display="none";
+  };
+  
+  const handleSubmit = (event) => {
+    event.preventDefault();
     console.log(sortedSymbols);
 
     fetchData();

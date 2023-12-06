@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import DetailedStockData from "./DetailedStockData";
 
 const StockData = ({ symbol, prices }) => {
+ 
     const [selectedSymbol, setSelectedSymbol] = useState({});
 
     //On Click function for the button to fire detailedStockData 
@@ -86,5 +87,7 @@ const StockData = ({ symbol, prices }) => {
         </>
     );
 };
+
+
 
 export default StockData;
