@@ -1,12 +1,17 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import clsx from "clsx";
+
 
 const DetailedStockData = React.memo(function DetailedStockData({ symbol }) {
+    console.log(symbol);
     const [details, setDetails] = useState({});
+    const [isVisible, setIsVisible] = useState(false);
 
     useEffect(() => {
-        if (symbol) {
-            setDetails({})
+        if (symbol) {   
+            setIsVisible(false);
+            setDetails({});
             const fetchData = async () => {
                 const options = {
                     method: 'GET',
@@ -27,6 +32,7 @@ const DetailedStockData = React.memo(function DetailedStockData({ symbol }) {
                     const response = await axios.request(options);
                     console.log(response.data);
                     setDetails(response.data);
+                    setIsVisible(true);
                 } catch (error) {
                     console.error(error);
                     return;
@@ -36,14 +42,31 @@ const DetailedStockData = React.memo(function DetailedStockData({ symbol }) {
             fetchData();
         }
     }, [symbol]);
+
+    var classes = clsx(
+        "flex-col",
+        "w-1/2",
+        {"hidden": !isVisible},
+    );
+
     return (
-        <div className=" ">
-            <p>{details.EPS}</p>
-            <p>{details.Beta}</p>
-            <p>{details.PERatio}</p>
-            <p>{details.DividendYield}</p>
-            <p>{details.DividendDate}</p>
-            <p>{details.DividendPerShare}</p>
+        <div className="flex flex-row">
+            <div className={classes} id="detailedLabels">
+                <div>EPS:</div>
+                <div>Beta:</div>
+                <div>Price to Earnings Ratio:</div>
+                <div>Dividend Yield:</div>
+                <div>Dividend Date:</div>
+                <div>Dividends Per Share:</div>
+            </div>
+            <div className="flex-col w-1/2">
+                <div>{details.EPS}</div>
+                <div>{details.Beta}</div>
+                <div>{details.PERatio}</div>
+                <div>{details.DividendYield}</div>
+                <div>{details.DividendDate}</div>
+                <div>{details.DividendPerShare}</div>
+            </div>    
         </div>
     );
 });

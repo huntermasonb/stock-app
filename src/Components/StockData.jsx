@@ -2,7 +2,6 @@ import { useState } from "react";
 import DetailedStockData from "./DetailedStockData";
 
 const StockData = ({ symbol, prices }) => {
- 
     const [selectedSymbol, setSelectedSymbol] = useState({});
 
     //On Click function for the button to fire detailedStockData 
@@ -12,7 +11,6 @@ const StockData = ({ symbol, prices }) => {
             // Should probably re-work this in the future.
             return { ...prevSelectedSymbols, [symbol]: symbol };
         });
-        document.querySelector("button").style.display = "none";
     };
 
     const isButtonHidden = (symbol) => {
@@ -20,7 +18,7 @@ const StockData = ({ symbol, prices }) => {
     }
 
     // Create an array of arrays, each containing 'itemsPerRow' items and calculate the amount of rows needed based on the number of total symbols
-    const itemsPerRow = 3;
+    const itemsPerRow = 3 ;
     const rows = Array.from({ length: Math.ceil(Object.keys(prices).length / itemsPerRow) }, (_, rowIndex) =>
         Object.keys(prices).slice(rowIndex * itemsPerRow, (rowIndex + 1) * itemsPerRow)
     );
@@ -32,8 +30,8 @@ const StockData = ({ symbol, prices }) => {
       
             'CARD' FOR DISPLAYING ALL OF THE STOCK INFORMATION
         */}
-        <h1 className="mt-6 text-center max-sm:font-semibold font-medium text-lg">
-            {symbol.length ? 'Stock Prices' : 'Enter Symbols to Show Stock Prices'}
+        <h1 className="mt-6 text-center font-bold text-2xl">
+            {symbol.length ? "Stock Prices" : "Enter Symbols to Show Stock Prices. Please Note ETF's detailed information will not work."}
         </h1>
         {/* Card Background */}
         <div className="lg:flex lg:flex-col lg:justify-center">
@@ -48,9 +46,8 @@ const StockData = ({ symbol, prices }) => {
                         } p-4 shadow space-y-2 duration-200 transition-all rounded-sm hover:shadow-lg`}       
                 >   
                     {/* Symbol Column */}
-                    <div className="flex items-center justify-between" id="symbol">
-                        <div className="font-semibold">Symbol</div>
-                        <div className="uppercase ">
+                    <div className="flex justify-center" id="symbol">
+                        <div className="uppercase font-medium">
                             {symbols === "price" ? symbol : symbols}
                             {/* 
                                 If price doesn't exist, then there was only one symbol input by the user, changes the way data must be referenced.
@@ -62,16 +59,15 @@ const StockData = ({ symbol, prices }) => {
                     </div>
 
                     {/* Price Column */}
-                    <div className="flex items-center justify-between pb-4" id="price">
-                        <div className="font-semibold">Price</div>
-                        <div>
+                    <div className="flex justify-center pb-4" id="price">
+                        <div className="">
                             {/* If price doesn't exist, then there was only one symbol input by the user. Changes the way data must be referenced from the API */}
-                            {prices[symbols].price ? prices[symbols].price : prices[symbols]}
+                            ${ parseFloat(prices[symbols].price ? (prices[symbols].price): prices[symbols]) }
                         </div>
                     </div>
-                    
-                    <div className="flex justify-center ">
-                        <button className={`${isButtonHidden(symbols === "price" ? symbol : symbols) ? "hidden" : ""}`} 
+                    {/* Below is very messy and should be reworked. I have nested ternaries to set classes, could potentialy clean this up by using clsx */}
+                    <div className="flex flex-col justify-center ">
+                        <button className={`${isButtonHidden(symbols === "price" ? symbol : symbols) ? "hidden" : ""} transition-all duration-150 ease-in-out`} 
                                 onClick={() => handleButtonClick(symbols === "price" ? symbol : symbols)}
                         >
                             More..

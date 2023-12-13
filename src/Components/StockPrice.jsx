@@ -83,13 +83,14 @@ const StockPrice = () => {
               type="text"
               id="stockSymbols"
               value={symbols}
-              className="border border-slate-300 px-3 py-2 rounded-lg w-full focus:ring-2 focus:ring-indigo-400 focus:border-indigo-400 focus:outline-none"
+              className="border border-slate-500 px-3 py-2 rounded-lg w-full focus:ring-2 focus:ring-indigo-400 focus:border-indigo-400 focus:outline-none"
               onChange={handleInputChange}
               placeholder="AMZN, AAPL..."
               required
             />
             <button type="submit" 
-              className="w-1/3 max-w-[250px] px-1 font-semibold rounded shadow-sm transition-colors duration-150 ease-in-out bg-indigo-500 text-indigo-100 hover:bg-indigo-600"
+              className="w-1/3 max-w-[250px] px-1 font-semibold rounded shadow-sm 
+                transition-colors duration-150 ease-in-out bg-indigo-500 text-indigo-100 hover:bg-indigo-600"
             >
               Search
             </button>
