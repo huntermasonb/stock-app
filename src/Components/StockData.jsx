@@ -62,7 +62,7 @@ const StockData = ({ symbol, prices }) => {
                     <div className="flex justify-center pb-4" id="price">
                         <div className="">
                             {/* If price doesn't exist, then there was only one symbol input by the user. Changes the way data must be referenced from the API */}
-                            ${ parseFloat(prices[symbols].price ? (prices[symbols].price): prices[symbols]) }
+                            ${ parseFloat(prices[symbols].price ? (prices[symbols].price): (prices[symbols])).toFixed(2) }
                         </div>
                     </div>
                     {/* Below is very messy and should be reworked. I have nested ternaries to set classes, could potentialy clean this up by using clsx */}
